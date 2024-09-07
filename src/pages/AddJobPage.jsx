@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const AddJobPage = () => {
+const AddJobPage = ({ addJobSubmit }) => {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
-
   const [type, setType] = useState("Full-Time");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -27,7 +29,10 @@ const AddJobPage = () => {
         contactPhone,
       },
     };
-    console.log("🚀 ~ submitForm ~ newJob:", newJob);
+
+    addJobSubmit(newJob);
+
+    return navigate("/jobs");
   };
 
   return (
